@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+// Make a linear search function with arry , size and element;;
+
+int linearsearch(int arr[], int size, int element){
+    for(int i = 0;i<size;i++){
+        if(arr[i]==element){
+            return i;
+        }
+    }
+}
+int main(){
+
+    // For Linear search we take sorrted and unsorrted array;;
+    
+    int arr[]={44,55,22,34,66,898,99,50};
+    int size = sizeof(arr)/sizeof(int);
+    int element = 898;
+    int S_index = linearsearch(arr,size,element);
+    printf("The elememt %d is found on %d index ",element , S_index);
+    return 0;
+}
