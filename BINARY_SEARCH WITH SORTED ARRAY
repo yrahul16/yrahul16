@@ -1,0 +1,42 @@
+#include<stdio.h>
+
+int binarysearch(int arr[], int size , int element){
+    
+    //Intialising the index as first_index , mid and last_index;;
+    
+    int first_index, mid , last_index;
+    first_index = 0;
+    last_index = size-1;
+    while(first_index<=last_index){
+        int mid = (first_index + last_index)/2;
+        if(arr[mid] == element){
+            return mid;
+        }
+        if(arr[mid] >element){
+            last_index = mid-1;
+        }
+        else{
+            first_index = mid+1;
+        }
+    }
+    return -1;
+}
+int main(){
+    
+    
+    // For binary search we take only sorrted array;;
+    
+    int arr[]={44,55,88,90,95,101,119,149,150};
+    int size = sizeof(arr)/sizeof(int);
+    int element = 1191;
+    int S_index = binarysearch(arr,size,element);
+    if(S_index == -1){
+       
+        printf("Oops! The element %d is not found ",element);
+    }
+    else{
+    
+        printf("The elememt %d is found on %d index ",element , S_index);
+    }
+    return 0;
+}
