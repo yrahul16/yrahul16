@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+//CREATING STRUCT NODE;;
+
+struct Node {
+    int data ;
+    struct Node *next;
+    
+};
+
+//CREATING VOID FUNCTION FOR DISPLAYING THE ELEMENT;;
+
+void LinkedListTraversal(struct Node *ptr){
+    while(ptr != NULL){
+        printf("Element : %d \n",ptr->data);
+        ptr = ptr->next;
+    }
+}
+
+int main(){
+    struct Node *head;
+    struct Node *second;
+    struct Node *third;
+    struct Node *fourth;
+    
+    //ALLOCATION THE MEMORY FROM HEAP;;
+    
+    head = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+    fourth = (struct Node *)malloc(sizeof(struct Node));
+    
+    // LINK THE FIRST NODE TO SECOND NODE;;
+    
+    head->data = 10;
+    head->next = second;
+    
+    //LINK THE SECOND NODE TO THIRD NODE ;;
+    
+    second->data = 20;
+    second->next = third;
+    
+    //LINK THE THIRD NODE TO FOURTH NODE;;
+    
+    third->data = 35;
+    third->next = fourth;
+    
+    //LINK THE FOURTH NODE TO NULL;;
+    
+    fourth->data = 50;
+    fourth->next = NULL;
+    
+    //CALLING THE FUNCTION;;
+    
+    LinkedListTraversal(head);
+    
+    return 0;
+    
+}
