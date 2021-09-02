@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+//CREATING STRUCT NODE;;
+
+struct Node {
+    int data ;
+    struct Node *next;
+    
+};
+
+//CREATING VOID FUNCTION FOR DISPLAYING THE ELEMENT;;
+void LinkedListTraversal(struct Node *ptr){
+    while(ptr != NULL){
+        printf("Element : %d \n",ptr->data);
+        ptr = ptr->next;
+    }
+}
+
+// CREATING THE FUNCTION FOR INSERTING THE ELEMENT AT BEGINNING;;
+
+struct Node *InsertAtBeginning(struct Node *head , int data ){
+    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+    
+    ptr->data = data ;
+    
+    ptr->next = head ;
+    
+    return ptr;
+    
+}
+
+// CREATING THE FUNCTION FOR INSRTING THE ELEMENT IN BETWEEN THE NODE;;
+
+struct Node *InsertAtIndex(struct Node *head, int data , int index){
+    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->data = data;
+    struct Node *p = head ;
+    int i = 0;
+    
+    while( i != index-1){
+         p = p->next;
+         i++;
+     }
+    ptr->next = p->next;
+    p->next = ptr ;
+    
+    
+    return head ;
+    
+}
+
+
+int main(){
+    struct Node *head;
+    struct Node *second;
+    struct Node *third;
+    struct Node *fourth;
+    
+    //ALLOCATION THE MEMORY FROM HEAP;;
+    
+    head = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+    fourth = (struct Node *)malloc(sizeof(struct Node));
+    
+    // LINK THE FIRST NODE TO SECOND NODE;;
+    
+    head->data = 10;
+    head->next = second;
+    
+    //LINK THE SECOND NODE TO THIRD NODE ;;
+    
+    second->data = 20;
+    second->next = third;
+    
+    //LINK THE THIRD NODE TO FOURTH NODE;;
+    
+    third->data = 35;
+    third->next = fourth;
+    
+    //LINK THE FOURTH NODE TO NULL;;
+    
+    fourth->data = 50;
+    fourth->next = NULL;
+    
+    //CALLING THE FUNCTION;;
+    
+    printf("Before Inserting  the Element:\n");
+    LinkedListTraversal(head);
+    
+    //CALLING THE INSERTING FUNCTION;;
+    
+    /*printf("\nAfter Inserting at beginning the Element: \n");
+    head = InsertAtBeginning(head , 5);
+    LinkedListTraversal(head);
+    */
+    printf("\nAfter Inserting the Element in between\n");
+    head = InsertAtIndex(head ,45 , 4);
+    LinkedListTraversal(head);
+    return 0;
+    
+}
