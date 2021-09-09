@@ -1,0 +1,128 @@
+// Traversal linked list
+#include<stdio.h>
+#include<stdlib.h>
+
+// Creating struct node;;
+struct Node{
+    int data;
+    struct Node * next;
+};
+
+// Creat a Travesral function for printing all the element;; 
+void LinkedListTraversal(struct Node * ptr){
+    
+    while(ptr!=NULL){
+        printf("Element : %d \n",ptr->data);
+        ptr = ptr->next;
+    }
+}
+
+// Case 1: Inserting the Element at Starting ;;;
+
+struct Node *InsertAtStarting(struct Node *head, int data){
+    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->data = data;
+    ptr->next = head;
+    
+    
+    return ptr;
+}
+
+// Case 2 : Inserting At Index ;;;
+
+struct Node *InsertAtIndex(struct Node * head , int data , int index){
+    struct Node * ptr = (struct Node *)malloc(sizeof(struct Node));
+    
+    struct Node * p = head;
+    
+    int i = 0;
+    while(i!= index-1){
+       p = p->next;
+       i++;
+    }
+    ptr->data = data;
+    ptr->next = p->next;
+    p->next = ptr;
+    return head ;
+}
+
+// Case 3 : Insert at End;;
+
+struct Node * InsertAtEnd(struct Node * head , int data ){
+    struct Node * ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->data = data;
+    struct Node *p = head;
+    
+    while(p->next!=NULL){
+        p=p->next;
+        
+    }
+    p->next = ptr;
+    ptr->next = NULL;
+    return head;
+}
+
+//Case 4: Insert at Index, Where Node is given;;
+
+struct Node *InsertAtNode(struct Node * head , struct Node *Givennode, int data){
+    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+    ptr->data = data;
+    
+    ptr->next = Givennode->next;
+    Givennode->next = ptr;
+    return head;
+}
+
+int main(){
+    
+    // Intializing and Allocating Memory from heap ;;
+    
+    struct Node *head = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *second = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *third = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *fourth = (struct Node *)malloc(sizeof(struct Node));
+    
+    // Linked Head to second node;;
+    
+    head->data = 20;
+    head->next  = second;
+    
+    // Linked second to third element;;
+    
+    second->data = 30;
+    second->next = third;
+    
+    // Linked third to fourth element;;
+    
+    third->data = 40;
+    third->next = fourth;
+    
+    // Linked fourth to Null;;;
+    
+    fourth->data = 50;
+    fourth->next = NULL;
+    
+    printf("Linked List Element Are : \n");
+    
+    // Calling Traversal Function;;
+    
+    LinkedListTraversal(head);
+    
+    printf("\nAfter Inserting The Element at Starting \n");
+    head = InsertAtStarting(head , 10);
+    LinkedListTraversal(head);
+    
+    printf("\nAfter Inserting the Element At Index\n");;
+    head = InsertAtIndex(head , 25 , 3);
+    LinkedListTraversal(head);
+    
+    printf("\nAfter Inserting the Element At the end\n");
+    head = InsertAtEnd(head , 60);
+    LinkedListTraversal(head);
+    
+    printf("\nAfter Inserting The Element At Given Node\n");
+    head = InsertAtNode(head, fourth ,45);
+    LinkedListTraversal(head);
+    
+    return 0;
+}
